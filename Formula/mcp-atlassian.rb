@@ -10,32 +10,39 @@ class McpAtlassian < Formula
   # each is the static build CI produced natively for that platform.
   on_macos do
     on_arm do
-      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.1.3/mcp-atlassian-aarch64-apple-darwin"
-      sha256 "b59075393b768154de87c8592f8d8377c61cdbe0b4c31e901339bcd3ffa27577"
+      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.1.4/mcp-atlassian-aarch64-apple-darwin"
+      sha256 "4442606d597a4eb5422212fd278c23eea21ef8e4dcfe569faaa4e6dc2ebd5a39"
     end
     on_intel do
-      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.1.3/mcp-atlassian-x86_64-apple-darwin"
-      sha256 "5c0083e1e05aad30b273a66d2269a3b376451f3d013f34ac518969f416c21cb1"
+      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.1.4/mcp-atlassian-x86_64-apple-darwin"
+      sha256 "36c4e9e06f4fda618875efed263aa6f527cae2c637bcc48cb7c3317eac2eec28"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.1.3/mcp-atlassian-aarch64-unknown-linux-musl"
-      sha256 "b487d1d8d012e29d646dc4361591c280a747e17898d5cdbeac0617cf2fb9a14f"
+      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.1.4/mcp-atlassian-aarch64-unknown-linux-musl"
+      sha256 "b20994750bb4c3dcf5c5f1d245078a6e2fd08cc7f1d58ca70da2b4543ce0c134"
     end
     on_intel do
-      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.1.3/mcp-atlassian-x86_64-unknown-linux-musl"
-      sha256 "cc266c94d0b0c6132911c9992bdab9b23754788e807f6f0ee525bc7260078fa1"
+      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.1.4/mcp-atlassian-x86_64-unknown-linux-musl"
+      sha256 "020e9a08e3160ad9683e916d2a212ca3805f5dd2f3e7c1da988bf742db922555"
     end
   end
 
   def install
     bin.install Dir["mcp-atlassian-*"].first => "mcp-atlassian"
+    # A downloaded file is not executable the way a compiled one is, and the
+    # next line has to run it. Without this the install fails with EACCES.
+    chmod 0755, bin/"mcp-atlassian"
+    # The binary prints its own completion scripts, so there is nothing to
+    # keep in step between the release and the formula.
+    generate_completions_from_executable(bin/"mcp-atlassian", "--completions")
   end
 
   test do
     assert_match "mcp-atlassian #{version}", shell_output("#{bin}/mcp-atlassian --version")
+    assert_match "complete", shell_output("#{bin}/mcp-atlassian --completions bash")
     # Refuses to start unconfigured, and says which variables it wants.
     output = shell_output("#{bin}/mcp-atlassian 2>&1", 1)
     assert_match "JIRA_URL", output
