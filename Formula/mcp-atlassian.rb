@@ -10,23 +10,23 @@ class McpAtlassian < Formula
   # each is the static build CI produced natively for that platform.
   on_macos do
     on_arm do
-      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.3.0/mcp-atlassian-aarch64-apple-darwin"
-      sha256 "103a165a909582386919dd76899a0415270908d1510d3c40c74575cd60849c6f"
+      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.3.3/mcp-atlassian-aarch64-apple-darwin"
+      sha256 "e6835f6346ebabc34d93c194479a609a005ebf2a23095f7e339379e8dd46b6dd"
     end
     on_intel do
-      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.3.0/mcp-atlassian-x86_64-apple-darwin"
-      sha256 "2d58f72479e16f8c973c210c90219798bbfac46fce87510e967ae284f7674bb9"
+      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.3.3/mcp-atlassian-x86_64-apple-darwin"
+      sha256 "eb23e7c5737b9b49dbacfb7ca4d5b1914e3c9cc50b971e49d350bb375739b92d"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.3.0/mcp-atlassian-aarch64-unknown-linux-musl"
-      sha256 "a171c910f5f2c5e93f164d0f1f53a29eb0ef206ff46e254768fa84b8fdf74970"
+      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.3.3/mcp-atlassian-aarch64-unknown-linux-musl"
+      sha256 "587a2a8bb42eda2c6d226623ec67a7574401b27f4175fa8a36a4759a44f100d5"
     end
     on_intel do
-      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.3.0/mcp-atlassian-x86_64-unknown-linux-musl"
-      sha256 "48431b256b21321ed570027bad094d97c741146da57c529137c7fc1b55ffc3bb"
+      url "https://github.com/d3lph1/mcp-atlassian/releases/download/v0.3.3/mcp-atlassian-x86_64-unknown-linux-musl"
+      sha256 "d72ad060ad8fc004bb5e8332f6e4d7b00fba5d549c891d6c2b937862ded58342"
     end
   end
 
